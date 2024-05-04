@@ -8,7 +8,7 @@ import Section from "./components/Section";
 function App() {
   return (
     <div className="app">
-      {/*<RoutingPage edited by aps />; */}
+      {/*<RoutingPage/>; */}
       <Header />
       <Section />
       <Footer />
