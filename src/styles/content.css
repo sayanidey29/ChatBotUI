@@ -1,0 +1,17 @@
+.content {
+  height: 100%;
+  display: flex;
+}
+.chatbox-container {
+  background-color: aqua;
+  /* flex: 1; */
+  flex-grow: 1;
+}
+.history-container {
+  background-color: bisque;
+  width: 30%;
+}
+.show-history-container {
+  position: absolute;
+  right: 0;
+}

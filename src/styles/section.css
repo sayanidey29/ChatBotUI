@@ -1,0 +1,14 @@
+.section {
+  width: 100%;
+  background-color: yellow;
+  flex-grow: 1;
+  display: flex;
+}
+.nav {
+  background-color: blueviolet;
+  width: 20%;
+}
+.contentfield {
+  background-color: blue;
+  width: 80%;
+}
