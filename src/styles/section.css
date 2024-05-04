@@ -1,14 +1,16 @@
 .section {
   width: 100%;
-  background-color: yellow;
+  /* background-color: yellow; */
   flex-grow: 1;
   display: flex;
+  background-image: url("../assets/background.png");
+  background-size: cover;
 }
 .nav {
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   width: 20%;
 }
 .contentfield {
-  background-color: blue;
+  /* background-color: blue; */
   width: 80%;
 }
