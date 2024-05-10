@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/header.css";
-import appLogo from "../assets/sce.svg";
-import headingLogo from "../assets/SCE-Agent-Logo.svg";
+import appLogo from "../assets/applogo.svg";
+import headingLogo from "../assets/headinglogo.svg";
 import lineLogo from "../assets/Line.svg";
 
 const Header = () => {

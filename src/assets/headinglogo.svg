@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
+  <!-- Background -->
+  <rect width="30%" height="30%" fill="none"/>
+  
+  <!-- Text -->
+  <text x="20" y="35" fill="white" font-size="24">Virtual Agent</text>
+</svg>

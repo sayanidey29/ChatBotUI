@@ -1,0 +1,75 @@
+.contentBox {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.chatbox {
+  height: 100%;
+  display: flex;
+  /* max-width: 100%; */
+  flex-direction: column;
+  overflow: auto;
+  overflow-wrap: break-word;
+  flex-grow: 1;
+}
+.chatbox-content {
+  background-color: white;
+  max-width: 100%;
+  flex-grow: 1;
+  color: black;
+  margin: 10px 30px 10px 30px; /*up right bottom left*/
+  border-radius: 10px;
+  height: 200px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.chatbox-content-hide {
+  background: transparent;
+  flex-grow: 1;
+}
+.chatbox-input {
+  /* background-color: aqua; */
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chatbox-input-box-div {
+  height: 80%;
+  width: 70%; /*600px;*/
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid white;
+  justify-content: space-between;
+  gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+.chatbox-input-box {
+  height: 100%;
+  flex-grow: 1;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+}
+
+.chatbox-input-box::placeholder {
+  color: white;
+}
+
+.history-container {
+  background-color: #fafafa;
+  width: 30%;
+  padding-top: 10px;
+}
+.show-history-container {
+  position: absolute;
+  right: 0;
+  padding-top: 10px;
+}
