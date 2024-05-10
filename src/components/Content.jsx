@@ -9,21 +9,28 @@ import Article from "../pages/Article";
 import DashBoard from "../pages/DashBoard";
 import { Route, Routes } from "react-router-dom";
 
-const Content = () => {
+const Content = ({ ...props }) => {
+  console.log("props={props}", props);
   return (
     <div className="content">
       <div className="chatbox-container">
         <Routes>
-          <Route path="/" element={<DashBoard />} />
-          <Route path="/chatbox" element={<ChatBox />} />
-          <Route path="/conversation" element={<Conversation />} />
+          {/*<Route path="/" element={<DashBoard props={props} />} />*/}
+          <Route path="/" element={<ChatBox props={props} />} />
+          <Route
+            path="/conversation"
+            element={<Conversation props={props} />}
+          />
           <Route
             path="/favouriteConversation"
-            element={<FavouriteConversation />}
+            element={<FavouriteConversation props={props} />}
           />
-          <Route path="/globalArchives" element={<GlobalArchives />} />
-          <Route path="/feedback" element={<Feedback />} />
-          <Route path="/article" element={<Article />} />
+          <Route
+            path="/globalArchives"
+            element={<GlobalArchives props={props} />}
+          />
+          <Route path="/feedback" element={<Feedback props={props} />} />
+          <Route path="/article" element={<Article props={props} />} />
         </Routes>
       </div>
     </div>

@@ -6,17 +6,45 @@ import ChatMsg from "../components/ChatMsg";
 import LoadingMsg from "../components/LoadingMsg";
 import rightArrow from "../assets/right-arrow.svg";
 import leftArrow from "../assets/left-arrow.svg";
+import { useLocation } from "react-router-dom";
 
-const ChatBox = () => {
-  const [userInput, setUserInput] = useState("");
-  const [isSend, setIsSend] = useState(false);
-  const [conversation, setConversation] = useState([]);
-  const [loading, setLoading] = useState(false);
+const ChatBox = ({ props }) => {
+  // const location = useLocation();
+  // console.log("location", location?.state);
+  // const { clearAll, setClearAll } = location?.state;
+
+  const {
+    userInput,
+    setUserInput,
+    conversation,
+    setConversation,
+    loading,
+    setLoading,
+    // msgScrollRef,
+    showHistoryConatiner,
+    setShowHistoryConatainer,
+    // clearAll,
+  } = props;
+  console.log("aps", userInput, conversation);
+
+  // const [userInput, setUserInput] = useState("");
+  // // const [isSend, setIsSend] = useState(false);
+  // const [conversation, setConversation] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [showHistoryConatiner, setShowHistoryConatainer] = useState(true);
+
   const msgScrollRef = useRef(null);
-  const [showHistoryConatiner, setShowHistoryConatainer] = useState(true);
+
   const handleHide = () => {
     setShowHistoryConatainer((prev) => !prev);
   };
+  // if (clearAll.current) {
+  //   setUserInput("");
+  //   setConversation([]);
+  //   setLoading(false);
+  //   msgScrollRef.current = null;
+  //   clearAll.current = false;
+  // }
 
   useEffect(() => {
     console.log("Sayu", msgScrollRef.current);
