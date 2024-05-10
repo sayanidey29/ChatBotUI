@@ -3,6 +3,7 @@ import "../styles/section.css";
 import Navigation from "./Navigation";
 import Content from "./Content";
 import warning from "../assets/warning.svg";
+import { useNavigate } from "react-router-dom";
 
 const Section = () => {
   // const [onlyRoute, setOnlyRoute] = useState(false);
@@ -15,11 +16,18 @@ const Section = () => {
   const [conversation, setConversation] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showHistoryConatiner, setShowHistoryConatainer] = useState(true);
+  const [navPath, setNavPath] = useState("");
+
+  const navigate = useNavigate();
 
   const handleNavClick = (path) => {
+    setNavPath(path);
     if (conversation.length > 0) {
       setHidePopUp(true);
+    } else {
+      navigate(path);
     }
+
     console.log(path);
   };
   const handleclearAll = () => {
@@ -28,17 +36,28 @@ const Section = () => {
     setLoading(false);
     setHidePopUp(false);
   };
+  const handleSave = () => {
+    const dataGet = localStorage.getItem("conversation");
+    let data = JSON.parse(dataGet) ? JSON.parse(dataGet) : [];
+    data.push(conversation);
+    localStorage.setItem("conversation", JSON.stringify(data));
+    console.log("save", conversation, data);
+  };
 
   const handleCancel = () => {
     handleclearAll();
     // setOnlyRoute(true);
     // setHidePopUp(false);
     console.log("cancel");
+    navigate(navPath);
   };
-  const handleSave = () => {
+  const handleSaveArchive = () => {
     // setOnlyRoute(false);
     // setHidePopUp(false);
-    console.log("save");
+    console.log("save", conversation);
+    handleSave();
+    handleclearAll();
+    navigate(navPath);
   };
   return (
     <div className="section">
@@ -114,7 +133,7 @@ const Section = () => {
                   </button>
                   <button
                     className="archivePopUp-button-archive"
-                    onClick={handleSave}
+                    onClick={handleSaveArchive}
                   >
                     Yes, Archive
                   </button>
