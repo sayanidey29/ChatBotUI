@@ -46,6 +46,7 @@ const Section = () => {
     setArchiveLog(historychat);
     sethistorychatselected(true);
     setArchiveConversationLength(historychat.length);
+    setIsChatChanged(false);
 
     if (conversation.length > 0) {
       // if (ishistorychatselected) {
@@ -63,8 +64,11 @@ const Section = () => {
       // } else {
       //   handleclearAll();
       // }
-
-      setHidePopUp(true);
+      if (isChatChanged) {
+        setHidePopUp(true);
+      } else if (ishistorychatselected) {
+        setConversation(historychat);
+      }
     } else {
       console.log("aps", historychat);
       setConversation(historychat);
@@ -100,9 +104,14 @@ const Section = () => {
   const handleNavClick = (path) => {
     setNavPath(path);
     if (conversation.length > 0) {
-      setHidePopUp(true);
-      if (ishistorychatselected === true && (isCancel || isSave)) {
-        sethistorychatselected(false);
+      if (isChatChanged) {
+        setHidePopUp(true);
+        if (ishistorychatselected === true && (isCancel || isSave)) {
+          sethistorychatselected(false);
+        }
+      } else {
+        navigate(path);
+        handleclearAll();
       }
     } else {
       navigate(path);
