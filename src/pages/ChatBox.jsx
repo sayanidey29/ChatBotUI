@@ -7,6 +7,7 @@ import LoadingMsg from "../components/LoadingMsg";
 import rightArrow from "../assets/right-arrow.svg";
 import leftArrow from "../assets/left-arrow.svg";
 import { useLocation } from "react-router-dom";
+import ChatHistoryDivCard from "./ChatHistoryDivCard";
 
 const ChatBox = ({ props }) => {
   // const location = useLocation();
@@ -23,9 +24,17 @@ const ChatBox = ({ props }) => {
     // msgScrollRef,
     showHistoryConatiner,
     setShowHistoryConatainer,
+    setIsChatChanged,
+    chatLog,
+    setChatLog,
+    // chatlistConversationHistory,
+    // setChatlistConversationHistory,
+    handlehistorycardclick,
+    hidePopUp,
+    setHidePopUp,
     // clearAll,
   } = props;
-  console.log("aps", userInput, conversation);
+  //console.log("aps", userInput, conversation);
 
   // const [userInput, setUserInput] = useState("");
   // // const [isSend, setIsSend] = useState(false);
@@ -95,6 +104,7 @@ const ChatBox = ({ props }) => {
         setConversation((prev) => [...prev, log]);
         console.log(conversation);
         setLoading(false);
+        setIsChatChanged(true);
       });
   };
 
@@ -105,6 +115,7 @@ const ChatBox = ({ props }) => {
       setUserInput(e.target.value);
     }
   };
+
   return (
     <div className="contentBox">
       <div className="chatbox">
@@ -119,6 +130,18 @@ const ChatBox = ({ props }) => {
             </div>
           </div>
         ) : (
+          //  : chatlistConversationHistory.length > 0 ? (
+          //   <div className="chatbox-content">
+          //     <div>
+          //       {chatlistConversationHistory.map((msg) => (
+          //         <ChatMsg msg={msg} />
+          //       ))}
+          //       {loading ? <LoadingMsg /> : null}
+          //       <div ref={msgScrollRef} className="scroll-down"></div>
+          //     </div>
+          //   </div>
+          // )
+
           <div className="chatbox-content-hide"></div>
         )}
         <div className="chatbox-input">
@@ -138,7 +161,36 @@ const ChatBox = ({ props }) => {
       {showHistoryConatiner ? (
         <div className="history-container">
           {/*<button onClick={handleHide}>Hide</button>*/}
-          <img src={leftArrow} alt="leftarrow" onClick={handleHide} />
+
+          <div className="arrowDiv">
+            <img src={leftArrow} alt="leftarrow" onClick={handleHide} />
+            <span>Recent Conversations</span>
+            <button className="chatHistoryViewAll">View All</button>
+          </div>
+          <div className="chatHistoryDiv">
+            <div className="chatHistorySearchHistory">HI</div>
+            <div className="chatHistoryDivHistory">
+              {chatLog.length > 0
+                ? chatLog.map((chatlist) => {
+                    return (
+                      <ChatHistoryDivCard
+                        chatlist={chatlist}
+                        // chatlistConversationHistory={
+                        //   chatlistConversationHistory
+                        // }
+                        // setChatlistConversationHistory={
+                        //   setChatlistConversationHistory
+                        // }
+                        handlehistorycardclick={handlehistorycardclick}
+                        hidePopUp={hidePopUp}
+                        setHidePopUp={setHidePopUp}
+                        conversation={conversation}
+                      />
+                    );
+                  })
+                : null}
+            </div>
+          </div>
         </div>
       ) : (
         <div className="show-history-container">

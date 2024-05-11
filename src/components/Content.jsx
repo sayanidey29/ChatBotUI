@@ -10,7 +10,7 @@ import DashBoard from "../pages/DashBoard";
 import { Route, Routes } from "react-router-dom";
 
 const Content = ({ ...props }) => {
-  console.log("props={props}", props);
+  //console.log("props={props}", props);
   return (
     <div className="content">
       <div className="chatbox-container">

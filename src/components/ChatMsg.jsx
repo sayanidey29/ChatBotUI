@@ -4,7 +4,7 @@ import user from "../assets/user2.svg";
 import "../styles/chatmsg.css";
 
 const ChatMsg = ({ msg }) => {
-  console.log(msg);
+  // console.log(msg);
   return (
     <div className="chatmsg">
       {msg.user === "human" ? (
