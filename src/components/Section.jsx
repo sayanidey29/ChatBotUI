@@ -42,11 +42,13 @@ const Section = () => {
     return () => clearInterval(interval); // Cleanup function to clear interval}
   }, []);
   const handlehistorycardclick = (id, historychat) => {
-    setArchiveId(id);
+    console.log("ArchiveId", id, historychat);
+
     setArchiveLog(historychat);
     sethistorychatselected(true);
     setArchiveConversationLength(historychat.length);
-    setIsChatChanged(false);
+    setIsCancel(false);
+    setIsSave(false);
 
     if (conversation.length > 0) {
       // if (ishistorychatselected) {
@@ -68,10 +70,12 @@ const Section = () => {
         setHidePopUp(true);
       } else if (ishistorychatselected) {
         setConversation(historychat);
+        setArchiveId(id);
       }
     } else {
       console.log("aps", historychat);
       setConversation(historychat);
+      setArchiveId(id);
 
       // setArchiveId(id);
       // setArchiveLog(historychat);
@@ -105,13 +109,19 @@ const Section = () => {
     setNavPath(path);
     if (conversation.length > 0) {
       if (isChatChanged) {
+        console.log("i am here", ishistorychatselected);
         setHidePopUp(true);
         if (ishistorychatselected === true && (isCancel || isSave)) {
           sethistorychatselected(false);
+          setIsCancel(false);
+          setIsSave(false);
+          console.log("i am here2");
         }
       } else {
         navigate(path);
         handleclearAll();
+        setIsCancel(false);
+        setIsSave(false);
       }
     } else {
       navigate(path);
@@ -124,22 +134,55 @@ const Section = () => {
     setHidePopUp(false);
   };
   const handleSave = () => {
-    const chatLog = {
-      archiveId: uuid4(),
-      userId: "1",
-      userName: "Sayani Dey",
-      isFavourite: 0,
-      globalStatus: 0,
-      title: conversation[0]?.message,
-      conversationHistory: conversation,
-      chatLogDateTime: handleDateFormateChange(currentDateTime),
-    };
+    console.log("archiveID", archiveID);
     const dataGet = localStorage.getItem("chatLog");
     let data = JSON.parse(dataGet) ? JSON.parse(dataGet) : [];
-    // data.push(chatLog); //enter in last
-    data.unshift(chatLog); //enter in first
-    localStorage.setItem("chatLog", JSON.stringify(data));
-    console.log("save", conversation, data, chatLog);
+    if (ishistorychatselected) {
+      const chatLog = {
+        archiveId: archiveID,
+        userId: "1",
+        userName: "Sayani Dey",
+        isFavourite: 0,
+        globalStatus: 0,
+        title: conversation[0]?.message,
+        conversationHistory: conversation,
+        chatLogDateTime: handleDateFormateChange(currentDateTime),
+      };
+      const newData = data.map((datachat) => {
+        if (datachat.archiveId == archiveID) {
+          console.log(
+            "datachat.archiveId and archiveID",
+            datachat.archiveId,
+            archiveID
+          );
+          return chatLog;
+        } else {
+          return datachat;
+        }
+      });
+      // data.push(chatLog); //enter in last
+      // data.unshift(chatLog); //enter in first
+      localStorage.setItem("chatLog", JSON.stringify(newData));
+      console.log("save", conversation, data, chatLog);
+    } else {
+      const chatLog = {
+        archiveId: uuid4(),
+        userId: "1",
+        userName: "Sayani Dey",
+        isFavourite: 0,
+        globalStatus: 0,
+        title: conversation[0]?.message,
+        conversationHistory: conversation,
+        chatLogDateTime: handleDateFormateChange(currentDateTime),
+      };
+
+      // data.push(chatLog); //enter in last
+      data.unshift(chatLog); //enter in first
+
+      localStorage.setItem("chatLog", JSON.stringify(data));
+      console.log("save", conversation, data, chatLog);
+    }
+    setIsChatChanged(false);
   };
 
   const handleCancel = () => {
@@ -149,9 +192,13 @@ const Section = () => {
     console.log("cancel");
     if (ishistorychatselected) {
       setConversation(archiveLog);
+      setIsCancel(true);
     }
-    setIsCancel(true);
-    navigate(navPath);
+    if (navPath.length > 0) {
+      handleclearAll();
+      navigate(navPath);
+    }
+    setIsChatChanged(false);
   };
   const handleSaveArchive = () => {
     // setOnlyRoute(false);
@@ -162,14 +209,17 @@ const Section = () => {
     handleclearAll();
     if (ishistorychatselected) {
       setConversation(archiveLog);
+      setIsSave(true);
     }
-    setIsSave(true);
-    navigate(navPath);
+    if (navPath.length > 0) {
+      handleclearAll();
+      navigate(navPath);
+    }
   };
   useEffect(() => {
     const dataGet = localStorage.getItem("chatLog");
     let datachatlog = JSON.parse(dataGet) ? JSON.parse(dataGet) : [];
-    console.log("daat", showHistoryConatiner);
+    console.log("daat", showHistoryConatiner, datachatlog);
 
     if (datachatlog.length > 0) {
       setChatLog(datachatlog);
