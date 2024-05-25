@@ -1,0 +1,124 @@
+.contentBox {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.chatbox {
+  height: 100%;
+  display: flex;
+  /* max-width: 100%; */
+  flex-direction: column;
+  overflow: auto;
+  overflow-wrap: break-word;
+  flex-grow: 1;
+}
+.chatbox-content {
+  background-color: white;
+  max-width: 100%;
+  flex-grow: 1;
+  color: black;
+  margin: 10px 30px 10px 30px; /*up right bottom left*/
+  border-radius: 10px;
+  height: 200px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.chatbox-content-hide {
+  background: transparent;
+  flex-grow: 1;
+}
+.chatbox-input {
+  /* background-color: aqua; */
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chatbox-input-box-div {
+  height: 80%;
+  width: 70%; /*600px;*/
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid white;
+  justify-content: space-between;
+  gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+.chatbox-input-box {
+  height: 100%;
+  flex-grow: 1;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+}
+
+.chatbox-input-box::placeholder {
+  color: white;
+}
+
+.history-container {
+  background-color: #fafafa;
+  width: 30%;
+  padding-top: 10px;
+  display: flex;
+  color: black;
+  flex-direction: column;
+  height: 530px;
+  /* overflow-y: scroll; */
+  overflow: hidden;
+}
+.arrowDiv {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  color: black;
+  /* font-weight: 500; */
+}
+.chatHistoryViewAll {
+  background-color: rgb(253, 188, 7);
+  color: black;
+  border-radius: 5px;
+  height: 26px;
+  width: 86px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.chatHistoryDiv {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.chatHistorySearchHistory {
+  margin-left: 30px;
+  margin-top: 15px;
+  margin-right: 30px;
+}
+.chatHistoryDivHistory {
+  margin-left: 30px;
+  /* margin-top: 15px; */
+  margin-right: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.show-history-container {
+  position: absolute;
+  right: 0;
+  padding-top: 10px;
+}

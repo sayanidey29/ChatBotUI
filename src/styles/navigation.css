@@ -23,10 +23,13 @@ a {
   font-weight: 500;
 } */
 
-.nav-Link :hover {
+.nav-Link:hover {
   font-weight: bold;
 }
+
 .nav-Link {
+  color: #fef7ee;
+  cursor: pointer;
   outline: none;
   border-bottom: 1px solid rgba(255, 243, 208, 0.36);
   margin-left: 20px;
@@ -36,6 +39,7 @@ a {
   align-items: center;
   height: 40px;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 .active {
